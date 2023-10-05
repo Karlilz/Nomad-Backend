@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000;
-const expressLayouts = require('express-ejs-layouts')
+// const expressLayouts = require('express-ejs-layouts')
 const morgan = require("morgan");
 const cors = require("cors");
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 
 
 app.use(express.static("public"));
-app.use(expressLayouts)
+// app.use(expressLayouts)
 
 app.use(express.json());
 app.use(cookieParser());
