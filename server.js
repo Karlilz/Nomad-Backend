@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 const morgan = require("morgan");
 const cors = require("cors");
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
-const travelBlogController = require ('./controller/travelBlogController')
+// const travelBlogController = require ('./controller/travelBlogController')
 const UserLogInController = require('./controller/UserLogInController');
 const cookieParser = require("cookie-parser");
 
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended:true}));
-app.use('/travelblog', travelBlogController)
+// app.use('/travelblog', travelBlogController)
 app.use('/signup',UserLogInController )
 
 
