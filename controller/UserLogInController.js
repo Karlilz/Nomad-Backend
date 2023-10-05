@@ -8,7 +8,8 @@ const cookieParser= require('cookie-parser');
 const salt = bcrypt.genSaltSync(10);
 const secret = 'oweubvcev';
 
-router.post("/signup", async (req,res) =>{
+// SIGNUP
+router.post("/", async (req,res) =>{
     const{username,password} =req.body;
     console.log(username,password)
     console.log(req.body)
@@ -20,11 +21,12 @@ router.post("/signup", async (req,res) =>{
             res.json(userDocument)
     }catch(e){
         console.log(e)
-        res.status(400).json(e);
+        res.status(400).json(e)
     }
       
 })
 
+// LOGIN
 router.post('/login', async (req,res) =>{
     const{username,password} = req.body;
     const userDocument = await UserLogIn.findOne({username});

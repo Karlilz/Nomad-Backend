@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended:true}));
 app.use('/post', postController)
-app.use('/signup',UserLogInController )
+app.use('/',UserLogInController )
 
 
 app.listen(PORT,() => console.log("Testing Nom@d App", PORT))
