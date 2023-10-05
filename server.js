@@ -9,6 +9,8 @@ app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 // const travelBlogController = require ('./controller/travelBlogController')
 const UserLogInController = require('./controller/UserLogInController');
 const cookieParser = require("cookie-parser");
+const mongoose = require('mongoose');
+
 
 
 app.use(express.static("public"));

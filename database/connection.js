@@ -1,54 +1,14 @@
-const express = require('express');
-const UserLogIn = require('../model/UserLogIn');
-const router = express.Router();
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken');
-const cookieParser= require('cookie-parser');
+require("dotenv").config();
+const mongoose = require('mongoose');
 
-const salt = bcrypt.genSaltSync(10);
-const secret = 'oweubvcev';
+mongoose.connect(process.env.MONGO_URI,{
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+});
 
-router.post("/signup", async (req,res) =>{
-    const{username,password} =req.body;
-    console.log(username,password)
-    console.log(req.body)
-    try{
-        const userDocument =await UserLogIn.create({
-            username,
-            password: bcrypt.hashSync(password,salt)
-        });
-            res.json(userDocument)
-    }catch(e){
-        console.log(e)
-        res.status(400).json(e);
-    }
-      
-})
+mongoose.connection
+    .on("open", () => console.log("Connected to MongoDB"))
+    .on("close", () => console.log("Connection Close"))
+    .on("error", (e) => console.log("Error occured:", e))
 
-router.post('/login', async (req,res) =>{
-    const{username,password} = req.body;
-    const userDocument = await UserLogIn.findOne({username});
-    const passOk=bcrypt.compareSync(password, userDocument.password)
-    if (passOk){
-        jwt.sign({username, id:userDocument.id}, secret, {}, (error,token) =>{
-            if(error) throw error;
-            res.cookie('token', token).json('ok');
-        });
-    }else{
-        res.status(400)
-    }
-})
-
-router.get('/profile', (req,res) => {
-    const{token} =req.cookies;
-    jwt.verify(token,secret, {}, (error,info)=>{
-        if(error) throw error;
-        res.json(info);
-    });
-    res.json(req.cookies);
-})
-
-router.post('/logout', (req,res) =>{
-    res.cookie('token', '').json('ok');
-})
-module.exports =router;
+module.exports = mongoose
