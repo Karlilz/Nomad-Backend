@@ -9,7 +9,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = 'oweubvcev';
 
 // SIGNUP
-router.post("/", async (req,res) =>{
+router.post("/signup", async (req,res) =>{
     const{username,password} =req.body;
     console.log(username,password)
     console.log(req.body)
