@@ -34,7 +34,7 @@ router.post('/login', async (req,res) =>{
     if (passOk){
         jwt.sign({username, id:userDocument.id}, secret, {}, (error,token) =>{
             if(error) throw error;
-            res.cookie('token', token).json('ok');
+            res.cookie('token', token).json(userDocument);
         });
     }else{
         res.status(400)
