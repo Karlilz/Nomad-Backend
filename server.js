@@ -4,8 +4,7 @@ const app = express()
 const PORT = process.env.PORT || 4000;
 const morgan = require("morgan");
 const cors = require("cors");
-// app.use(cors({credentials:true,origin:'http://localhost:3000'}));
-app.use(cors({credentials:true,origin:'https://nomad-vt3u.onrender.com'}));
+app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 const postController = require ('./controller/postController')
 const UserLogInController = require('./controller/UserLogInController');
 const cookieParser = require("cookie-parser");
