@@ -43,9 +43,10 @@ router.post('/login', async (req,res) =>{
 
 router.get('/profile', (req,res) => {
     const{token} =req.cookies;
-    jwt.verify(token,secret, {}, (error,info)=>{
+    return jwt.verify(token,secret, {}, (error,info)=>{
         if(error) throw error;
         res.json(info);
+        return 
     });
     res.json(req.cookies);
 })

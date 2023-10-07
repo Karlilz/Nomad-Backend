@@ -21,7 +21,8 @@ router.delete("/:id", async(req,res) =>{
 })
 
 //UPDATE
-router.post("/update/:id", async (req,res) =>{
+router.put("/:id", async (req,res) =>{
+    console.log('about to update', req.body)
     try{
         res.json(await PostUser.findByIdAndUpdate(req.params.id, req.body,{ new:true}))
     }catch{
